@@ -1,0 +1,17 @@
+// ❌ Versi BUG (sekarang)
+function validateEmail(email) {
+  return email.includes('@'); // Cuma cek ada @ — ini yang salah
+}
+
+// ✅ Versi PERBAIKAN
+function validateEmailFixed(email) {
+  const hasAt = email.indexOf('@') > 0 && email.indexOf('@') === email.lastIndexOf('@');
+  const hasDotAfterAt = email.includes('.') && email.lastIndexOf('.') < email.length - 2;
+  return hasAt && hasDotAfterAt;
+}
+
+function checkEmail() {
+  const email = document.getElementById('emailInput').value;
+  const ok = validateEmailFixed(email);
+  document.getElementById('hasil').textContent = ok ? "✅ Valid" : "❌ Tidak valid";
+}
